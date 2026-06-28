@@ -1,49 +1,49 @@
 package com.example;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class TriangleTest {
 
     private Triangle triangle;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeMethod
+    public void setUp() {
         triangle = new Triangle();
     }
 
-    @Test
-    @DisplayName("Прямоугольный треугольник 3-4-5: площадь = 6.0")
-    void testRightTriangle() {
-        assertEquals(6.0, triangle.calculateArea(3, 4, 5), 0.001);
+    @Test(description = "Прямоугольный треугольник 3-4-5: площадь = 6.0")
+    public void testRightTriangle() {
+        Assert.assertEquals(triangle.calculateArea(3, 4, 5), 6.0, 0.001);
     }
 
-    @Test
-    @DisplayName("Равносторонний треугольник со стороной 2")
-    void testEquilateralTriangle() {
-        assertEquals(Math.sqrt(3), triangle.calculateArea(2, 2, 2), 0.001);
+    @Test(description = "Равносторонний треугольник со стороной 2")
+    public void testEquilateralTriangle() {
+        Assert.assertEquals(triangle.calculateArea(2, 2, 2), Math.sqrt(3), 0.001);
     }
 
-    @Test
-    @DisplayName("Нулевая сторона — исключение")
-    void testZeroSide() {
-        assertThrows(IllegalArgumentException.class,
-                () -> triangle.calculateArea(0, 4, 5));
+    @Test(
+            description = "Нулевая сторона — исключение",
+            expectedExceptions = IllegalArgumentException.class
+    )
+    public void testZeroSide() {
+        triangle.calculateArea(0, 4, 5);
     }
 
-    @Test
-    @DisplayName("Отрицательная сторона — исключение")
-    void testNegativeSide() {
-        assertThrows(IllegalArgumentException.class,
-                () -> triangle.calculateArea(-1, 4, 5));
+    @Test(
+            description = "Отрицательная сторона — исключение",
+            expectedExceptions = IllegalArgumentException.class
+    )
+    public void testNegativeSide() {
+        triangle.calculateArea(-1, 4, 5);
     }
 
-    @Test
-    @DisplayName("Несуществующий треугольник 1-2-10 — исключение")
-    void testInvalidTriangle() {
-        assertThrows(IllegalArgumentException.class,
-                () -> triangle.calculateArea(1, 2, 10));
+    @Test(
+            description = "Несуществующий треугольник — исключение",
+            expectedExceptions = IllegalArgumentException.class
+    )
+    public void testInvalidTriangle() {
+        triangle.calculateArea(1, 2, 10);
     }
 }

@@ -1,52 +1,45 @@
 package com.example;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class NumberComparatorTest {
 
     private NumberComparator comparator;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeMethod
+    public void setUp() {
         comparator = new NumberComparator();
     }
 
-    @Test
-    @DisplayName("10 > 5 → возвращает 1")
-    void testFirstIsGreater() {
-        assertEquals(1, comparator.compare(10, 5));
+    @Test(description = "10 > 5 — возвращает 1")
+    public void testFirstIsGreater() {
+        Assert.assertEquals(comparator.compare(10, 5), 1);
     }
 
-    @Test
-    @DisplayName("3 < 8 → возвращает -1")
-    void testFirstIsLess() {
-        assertEquals(-1, comparator.compare(3, 8));
+    @Test(description = "3 < 8 — возвращает -1")
+    public void testFirstIsLess() {
+        Assert.assertEquals(comparator.compare(3, 8), -1);
     }
 
-    @Test
-    @DisplayName("7 == 7 → возвращает 0")
-    void testEqual() {
-        assertEquals(0, comparator.compare(7, 7));
+    @Test(description = "7 == 7 — возвращает 0")
+    public void testEqual() {
+        Assert.assertEquals(comparator.compare(7, 7), 0);
     }
 
-    @Test
-    @DisplayName("findMax(10, 3) = 10")
-    void testFindMax() {
-        assertEquals(10, comparator.findMax(10, 3));
+    @Test(description = "findMax(10, 3) = 10")
+    public void testFindMax() {
+        Assert.assertEquals(comparator.findMax(10, 3), 10);
     }
 
-    @Test
-    @DisplayName("findMin(10, 3) = 3")
-    void testFindMin() {
-        assertEquals(3, comparator.findMin(10, 3));
+    @Test(description = "findMin(10, 3) = 3")
+    public void testFindMin() {
+        Assert.assertEquals(comparator.findMin(10, 3), 3);
     }
 
-    @Test
-    @DisplayName("Сравнение отрицательных: -5 > -10 → возвращает 1")
-    void testNegativeNumbers() {
-        assertEquals(1, comparator.compare(-5, -10));
+    @Test(description = "Сравнение отрицательных: -5 > -10 — возвращает 1")
+    public void testNegativeNumbers() {
+        Assert.assertEquals(comparator.compare(-5, -10), 1);
     }
 }
