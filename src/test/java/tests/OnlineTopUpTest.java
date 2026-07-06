@@ -10,7 +10,7 @@ public class OnlineTopUpTest extends BaseTest {
     @Test
     public void checkBlockTitle() {
         MainPage mainPage = new MainPage(driver);
-        Assert.assertEquals(mainPage.getBlockTitleText(), "Онлайн пополнение без комиссии");
+        Assert.assertEquals(mainPage.getBlockTitleText(), "ОНЛАЙН ПОПОЛНЕНИЕ БЕЗ КОМИССИИ");
     }
 
     @Test
